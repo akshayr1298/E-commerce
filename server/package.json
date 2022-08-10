@@ -18,6 +18,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.0",
     "nodemo": "^1.0.0",
+    "npm": "^8.16.0",
     "prettier": "^2.7.1",
     "react-router-dom": "^6.3.0",
     "twilio": "^3.80.0"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,8 +13,6 @@ import { validEmail,validFname,validLname,validPhoneNumber,validPassword } from 
 import { FormHelperText } from "@material-ui/core";
 import axios from 'axios'
 import {serverURL} from '../../Constant/constant'
-import { useNavigate } from "react-router-dom";
-import Dialog from '@mui/material/Dialog';
 import OTPvalidation from "../OTPvalidation/OTPvalidation";
 
 const useStyles = makeStyles(theme => ({
@@ -39,17 +37,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp(props) {
    
-  const [open, setOpen] = React.useState(false);
+   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   props.onChange();
+  // };
+  const handleClose = () => setOpen(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+
    const classes = useStyles();
-   const navigate = useNavigate()
    const [fName,setfName] = useState('');
    const [lName,setlName] = useState('');
    const [phNo,setphNo]  = useState('');
@@ -61,9 +58,12 @@ export default function SignUp(props) {
    const [fNameErr,setfNameErr] = useState(false);
    const [lNameErr,setlNameErr] = useState(false);
    const [phNoErr,setphNoErr]  = useState(false);
+   const [userData,setUserData] = useState('')
+   const [openOtpModal, setOtpModal] = useState(false)   
 
    const validate = async (event) => {
     event.preventDefault()
+
     if(!validFname.test(fName)){
       setfNameErr(true);
     }
@@ -80,22 +80,32 @@ export default function SignUp(props) {
     if (!validPassword.test(password)) {
        setPwdErr(true);
     }
-    console.log(fName,lName,phNo,email,password);
     const data = {fName,lName,phNo,email,password}
+   
+    setUserData(data)
 
-   await axios.post(`${serverURL}signup`,data).then(()=>{
-      navigate('/otpVarification')
+   await axios.post(`${serverURL}signup`,data).then((res)=>{
+    console.log(res.data)
+         
+    setOtpModal(true)
 
+      //  if (res.data === 'otp send'){
+      //   // console.log(openOtpModal);
+      //   // console.log('hello');
+      //  }
+       console.log('hii');
     }).catch((err)=>{
+     
       console.log(err);
     })
 
 
  };
-
+ let handleCloseOtpModal = () => setOtpModal(false) 
   const handleAction=()=>{
     props.onChange('signUp')
   }
+  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -237,24 +247,21 @@ export default function SignUp(props) {
         </form>
       </div>
       
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
+      {/* <Button variant="outlined" onCl
+      ick={handleClickOpen}>
+        Open alert dialog 
       </Button> */}
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
+      {openOtpModal && <OTPvalidation  onChange={handleClose} data={userData} onAction={handleCloseOtpModal}/>}
+      {/* <Dialog  > */}
        
-         { open && <OTPvalidation onChange={handleClose}  />} 
+         {/* { openOtpModal && }  */}
          {/* <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
             Agree
           </Button>
         </DialogActions> */}
-      </Dialog>
+      {/* </Dialog> */}
     </Container>
   );
 }

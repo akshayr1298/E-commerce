@@ -19,7 +19,9 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import SignIn from '../Signin/signin';
 import SignUp from '../SignUP/SignUp';
-
+import axios from 'axios';
+import { serverURL } from '../../Constant/constant';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
@@ -104,6 +106,19 @@ export default function Navbar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  let navigate = useNavigate()
+
+  const hanldeLogOut = async()=>{
+    axios.post(`${serverURL}logout`,{
+      withCredential:true
+    }).then((res)=>{
+      console.log(res);
+      navigate('/')
+    }).catch((err)=>{
+      console.log(err);
+
+    })
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -124,6 +139,8 @@ export default function Navbar() {
     >
       <MenuItem onClick={handleOpen}>Login / Signup</MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={hanldeLogOut} >Logout</MenuItem>
+
     </Menu>
   );
 
