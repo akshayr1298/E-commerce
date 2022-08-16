@@ -22,7 +22,7 @@ module.exports={
             }
                 console.log("number",req.body.phNo); 
 
-              let response = await client.verify.services(serviceSID).verifications.create({
+              let response = await client.verify.v2.services(serviceSID).verifications.create({
                     to: `+91${req.body.phNo}`,
                     channel:"sms"
                 })
@@ -42,16 +42,15 @@ module.exports={
     verifyOTP:async(req,res)=>{
         console.log('otp submitted');
         console.log(req.body);
-        const otp = req.body.otp
-        const ph = req.body.data.phNo
-        console.log('otp & ph',otp,' ',ph);
         try{
-        
-        let otpverify = client.verify.services(serviceSID).verificationChecks.create({
-            to:`91+${req.body.data.phNo}`,
-            code:otp})
-            console.log(otpverify);
-            const hashPswrd = await bcrypt.hash(req.body.data.password,10)
+        let otp =  req.body.otp
+        await client.verify.v2.services(serviceSID).verificationChecks.create({
+            to:`+91${req.body.data.phNo}`,
+            code:otp}).then((verification_check)=>{
+                console.log(verification_check.status);
+            })
+            if(verification_check.status === 'approved'){
+             const hashPswrd = await bcrypt.hash(req.body.data.password,10)
              await User.create({
               fname:req.body.data.fName,
               lname:req.body.data.lName,
@@ -59,7 +58,11 @@ module.exports={
               email:req.body.data.email,
               password:hashPswrd,
              })
-             return res.status(200).json({data:'success'})
+             return res.status(200).json({status:'approved'})
+            }else{
+                return res.status(400).json({staus:"Invalid otp"})
+            }
+            
         }catch(err){
             console.log(err);
         }
@@ -78,10 +81,10 @@ module.exports={
                 return res.status(401).json({error:"Invalid password"}) // unauthorized
             }
            const accessToken =  jwt.sign(email,secretToken)
-        //    res.json({accessToken:accessToken})
            res.cookie('accessToken', accessToken, { maxAge: 600000, httpOnly: true })
            res.cookie('refreshToken', refreshToken, { httpOnly: true })
            res.cookie('uerId', user._id, { httpOnly: true })
+           res.json({accessToken:accessToken})
            return res.status(200).json({ message: 'Success' })
 
         }catch(err){

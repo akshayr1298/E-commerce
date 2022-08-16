@@ -218,7 +218,8 @@ export default function Navbar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            MUI 
+           
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -231,6 +232,8 @@ export default function Navbar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Typography variant="h6" color={'white'} sx={{mt:1}}>Mens</Typography>
+          <Typography variant="h6" color={'white'} sx={{ml:1,mt:1}} href="#" > Womens</Typography>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={2} color="error">
                 <FavoriteIcon/>
