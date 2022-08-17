@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions,Grid } from '@mui/material';
-
+import './Cardswiper.css'
 
 export default function MultiActionAreaCard() {
   return (
@@ -19,6 +19,7 @@ export default function MultiActionAreaCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
+          className="cardmedia"
           component="img"
           height="250"
           sx={{
@@ -48,6 +49,7 @@ export default function MultiActionAreaCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
+         className="cardmedia"
           component="img"
           height="250"
           sx={{
@@ -78,6 +80,7 @@ export default function MultiActionAreaCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
+        className="cardmedia"
           component="img"
           height="250"
           sx={{
@@ -108,6 +111,7 @@ export default function MultiActionAreaCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
+        className="cardmedia"
           component="img"
           height="250"
           sx={{
