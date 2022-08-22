@@ -93,7 +93,7 @@ export default function SignUp(props) {
       //   // console.log(openOtpModal);
       //   // console.log('hello');
       //  }
-       console.log('hii');
+       
     }).catch((err)=>{
      
       console.log(err);

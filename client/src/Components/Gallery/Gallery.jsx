@@ -3,10 +3,7 @@ import React from "react";
 import Carousel from "react-elastic-carousel";
 import Item from '../Gallery/Item'
 import '../Gallery/Gallery.css'
-
-
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
@@ -39,6 +36,7 @@ const image ={
 'width': '100%',
 'height': '100%',
 'objectFit': 'fill',
+'cursor':'pointer'
 
 }
 
@@ -108,7 +106,7 @@ function Gallery() {
        
       </Carousel>
     </div>
-    <Button >Open modal</Button>
+    
       <Modal
         open={open}
         onClose={handleClose}

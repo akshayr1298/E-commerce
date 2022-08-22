@@ -16,7 +16,7 @@ export default function MultiActionAreaCard() {
       </Typography>
       </Grid>
       <Grid item xs={'12'} justifyContent='center' sx={{display:'flex'}} sm={'6'} md={'3'}>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} className='card' style={{boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
       <CardActionArea>
         <CardMedia
           className="cardmedia"
@@ -46,7 +46,7 @@ export default function MultiActionAreaCard() {
     </Card>
     </Grid>
     <Grid  justifyContent='center' item xs={'12'} sx={{display:'flex'}} sm={'6'} md={'3'}>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} style={{boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
       <CardActionArea>
         <CardMedia
          className="cardmedia"
@@ -77,7 +77,7 @@ export default function MultiActionAreaCard() {
 
     </Grid>
     <Grid  justifyContent='center' sx={{display:'flex'}} item xs={'12'} sm={'6'} md={'3'}>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} style={{boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
       <CardActionArea>
         <CardMedia
         className="cardmedia"
@@ -108,7 +108,7 @@ export default function MultiActionAreaCard() {
 
     </Grid>
     <Grid  justifyContent='center' sx={{display:'flex'}} item xs={'12'} sm={'6'} md={'3'}>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} style={{boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
       <CardActionArea>
         <CardMedia
         className="cardmedia"

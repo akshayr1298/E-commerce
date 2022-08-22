@@ -8,19 +8,35 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
+import { validEmail,validPassword } from '../../RegexValidation/RegexValidation';
+import { useState } from 'react';
+import axios from 'axios';
+import { serverURL } from '../../Constant/constant';
 
 const theme = createTheme();
 
+
 export default function AdminLogin() {
-  const handleSubmit = (event) => {
+const [email,setEmail] = useState('')
+const [password,setPassword] = useState('')
+const [emailErr,setEmailErr] = useState(false)
+const [pswrdErr,setPswrdErr] = useState(false)
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    if(!validEmail.test(email)){
+      setEmailErr(true)
+    }
+    if(!validPassword.test(password)){
+      setPswrdErr(true)
+    }
+    
+    const data = {email,password}
+    console.log(data)
+  // await  axios.post(`${serverURL}admnlogin`,data).then((res)=>{
+  //   console.log(res)
+  // })
+
   };
 
   return (
@@ -51,8 +67,11 @@ export default function AdminLogin() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               
             />
+            {emailErr && <small style={{color:"red"}}> Enter a valid email</small>}
             <TextField
               margin="normal"
               required
@@ -62,8 +81,10 @@ export default function AdminLogin() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
-            
+             {pswrdErr && <small style={{color:"red"}}> Enter a valid Password</small>}
             <Button
               type="submit"
               fullWidth
