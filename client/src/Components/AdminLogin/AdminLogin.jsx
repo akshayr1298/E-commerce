@@ -12,6 +12,8 @@ import { validEmail,validPassword } from '../../RegexValidation/RegexValidation'
 import { useState } from 'react';
 import axios from 'axios';
 import { serverURL } from '../../Constant/constant';
+import { useNavigate } from 'react-router-dom';
+
 
 const theme = createTheme();
 
@@ -21,6 +23,7 @@ const [email,setEmail] = useState('')
 const [password,setPassword] = useState('')
 const [emailErr,setEmailErr] = useState(false)
 const [pswrdErr,setPswrdErr] = useState(false)
+const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,10 +35,11 @@ const [pswrdErr,setPswrdErr] = useState(false)
     }
     
     const data = {email,password}
-    console.log(data)
-  // await  axios.post(`${serverURL}admnlogin`,data).then((res)=>{
-  //   console.log(res)
-  // })
+    console.log('data',data)
+  await  axios.post(`${serverURL}admin/adminlogin`,data).then((res)=>{
+    console.log(res)
+    navigate('/adminhome')
+  })
 
   };
 

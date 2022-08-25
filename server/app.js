@@ -30,7 +30,9 @@ app.use(cookieParser())
 
 // routes
 const userRoutes = require("./Routes/userroute")
+const adminRoutes = require("./Routes/adminroute")
 app.use('/',userRoutes)
+app.use('/admin',adminRoutes)
 
 
 // port
