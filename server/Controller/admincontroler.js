@@ -31,7 +31,21 @@ module.exports =  {
             console.log(err);
         }
 
-    }
+    },
+
+
+    adminLogout: (req, res) => {
+        try {
+          console.log('resss');
+          console.log(req.cookies);
+          res.clearCookie('adminaccessToken');
+          res.clearCookie('adminrefreshToken')
+          return res.json({ message: 'logout successful' });
+        } catch (error) {
+          console.log(error);
+          return res.status(401).json({ error: 'logout failed' }); // 401 Unauthorized;
+        }
+      },
 
 
 
