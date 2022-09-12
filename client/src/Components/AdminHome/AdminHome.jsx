@@ -2,6 +2,8 @@ import React from 'react'
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import Adminsidebar from '../Adminsidebar/Adminsidebar'
 import AdminWidget from '../AdminWidget/AdminWidget'
+import Chart from '../Chart/Chart'
+import Featured from '../Featured/Featured'
 import './AdminHome.scss'
 
 function AdminHome() {
@@ -13,8 +15,12 @@ function AdminHome() {
        <div className="widgets">
         <AdminWidget type = "user"/>
         <AdminWidget type = "order"/>
-        <AdminWidget type = "erarning"/>
+        <AdminWidget type = "earning"/>
         <AdminWidget type = "balance"/>
+       </div>
+       <div className="charts">
+        <Featured/>
+        <Chart/>
        </div>
       </div>
     </div>
