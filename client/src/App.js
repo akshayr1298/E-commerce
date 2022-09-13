@@ -4,7 +4,7 @@ import HomePage from './Pages/HomePage';
 import OTPvalidation from './Components/OTPvalidation/OTPvalidation';
 import AdminLoginPages from './Pages/AdminLoginPages';
 import AdminHomePage from './Pages/AdminHomePage';
-import Adminsidebarpages from './Pages/Adminsidebarpages';
+import List from './Components/List/List';
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
         <Route path = '/otpVarification' element={<OTPvalidation/>} />
         <Route path = '/adminlogin' element={<AdminLoginPages/>}/>
         <Route path = '/adminhome' element={<AdminHomePage/>} />
-        <Route path = '/adhome' element={<Adminsidebarpages/>}/>
+        <Route path = '/adminlist' element={<List/>}/>
 
       </Routes>
      </Router>

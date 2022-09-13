@@ -28,7 +28,7 @@ function Chart() {
   </defs>
   <XAxis dataKey="name" />
   <YAxis />
-  <CartesianGrid strokeDasharray="3 3" />
+  <CartesianGrid strokeDasharray="3 3"  className='chartGrid'/>
   <Tooltip />
   <Area type="monotone" dataKey="Total" stroke="#8884d8" fillOpacity={1} fill="url(#total)" />
 </AreaChart>

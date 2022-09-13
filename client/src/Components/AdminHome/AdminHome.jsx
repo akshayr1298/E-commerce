@@ -4,6 +4,7 @@ import Adminsidebar from '../Adminsidebar/Adminsidebar'
 import AdminWidget from '../AdminWidget/AdminWidget'
 import Chart from '../Chart/Chart'
 import Featured from '../Featured/Featured'
+import DataTable from '../Table/Table'
 import './AdminHome.scss'
 
 function AdminHome() {
@@ -21,6 +22,12 @@ function AdminHome() {
        <div className="charts">
         <Featured/>
         <Chart/>
+       </div>
+       <div className="listContainer">
+        <div className="listTitle">
+          latest Transcation
+          <DataTable/>
+        </div>
        </div>
       </div>
     </div>
