@@ -7,8 +7,12 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import LogoutIcon from '@mui/icons-material/Logout';
 import GroupIcon from '@mui/icons-material/Group';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function Adminsidebar() {
+  const navigate = useNavigate()
+
   return (
     <div className='sidebar'>
       <div className='top'> 
@@ -28,9 +32,13 @@ function Adminsidebar() {
           <p className="title">LIST</p>
           <li>
             <GroupIcon className='icon'/>
+            <Button onClick={()=>navigate('/adminlist')}>
             <span>
               Users
             </span>
+
+            </Button>
+           
           </li>
           <li>
             <InventoryIcon className='icon'/>
